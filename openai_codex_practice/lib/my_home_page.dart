@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'l10n/app_localizations.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -10,7 +11,11 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
-  static const List<String> _titles = ['Home', 'Map', 'Settings'];
+  List<String> get _titles => [
+        AppLocalizations.of(context)!.home,
+        AppLocalizations.of(context)!.map,
+        AppLocalizations.of(context)!.settings,
+      ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -34,10 +39,13 @@ class MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
-          BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+        items: [
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.home), label: AppLocalizations.of(context)!.home),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.map), label: AppLocalizations.of(context)!.map),
+          BottomNavigationBarItem(
+              icon: const Icon(Icons.settings), label: AppLocalizations.of(context)!.settings),
         ],
       ),
     );

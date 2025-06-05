@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "appTitle": "Flutter Demo",
+  "home": "Home",
+  "map": "Map",
+  "settings": "Settings"
+}
