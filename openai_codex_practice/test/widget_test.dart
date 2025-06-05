@@ -11,20 +11,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:openai_codex_practice/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Bottom navigation works', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that Home tab is selected by default.
+    expect(find.text('Home'), findsNWidgets(2)); // AppBar and body
+    expect(find.text('Map'), findsOneWidget);
+    expect(find.text('Settings'), findsOneWidget);
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Tap the Map tab and verify content updates.
+    await tester.tap(find.text('Map'));
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('Map'), findsNWidgets(2));
+    expect(find.text('Home'), findsOneWidget); // bottom item label
   });
 }
