@@ -30,12 +30,48 @@ android {
         versionName = flutter.versionName
     }
 
+    flavorDimensions += "env"
+    productFlavors {
+        dev {
+            dimension "env"
+        }
+        stg {
+            dimension "env"
+        }
+        prod {
+            dimension "env"
+        }
+    }
+
     buildTypes {
+        debug {
+        }
         release {
             // TODO: Add your own signing config for the release build.
             // Signing with the debug keys for now, so `flutter run --release` works.
             signingConfig = signingConfigs.debug
         }
+        profile {
+        }
+    }
+    applicationVariants.all { variant ->
+        def flavor = variant.flavorName
+        def buildType = variant.buildType.name
+        def buildTypeCap = buildType.capitalize()
+        def appSuffix = ""
+        def idSuffix = ""
+        if (flavor == "prod" && buildType == "release") {
+            appSuffix = ""
+            idSuffix = ""
+        } else if (flavor == "prod") {
+            appSuffix = "-" + buildTypeCap
+            idSuffix = "." + buildType
+        } else {
+            appSuffix = "-" + flavor + buildTypeCap
+            idSuffix = "." + flavor + "." + buildType
+        }
+        variant.resValue "string", "app_name", "openai_codex_practice" + appSuffix
+        variant.mergedFlavor.applicationIdSuffix = idSuffix
     }
 }
 
