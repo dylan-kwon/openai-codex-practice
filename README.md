@@ -19,7 +19,7 @@ samples, guidance on mobile development, and a full API reference.
 
 This project defines three flavors: `dev`, `stg`, and `prod`.
 Each flavor can be built with the debug, release or profile build types.
-Each build variant appends the flavor and build type to the application name and package name. For example `stgRelease` is built as `openai_codex_practice-stgRelease` with the package `dylan.kwon.flutter.codex.openai_codex_practice.stg.release`. The `prod` flavor omits the suffix for release builds and only adds the build type for other variants.
+Each build variant appends the flavor and build type to the application and package names. The resource files under `android/app/src/*/res` provide the display name for each variant. For example `stgRelease` is built as `openai_codex_practice-stgRelease` with the package `dylan.kwon.flutter.codex.openai_codex_practice.stg.release`. The `prod` flavor omits the suffix for release builds and only adds the build type for other variants.
 
 
 ### Android

@@ -58,20 +58,6 @@ android {
             applicationIdSuffix ".profile"
         }
     }
-    applicationVariants.all { variant ->
-        def flavor = variant.flavorName
-        def buildType = variant.buildType.name
-        def buildTypeCap = buildType.capitalize()
-        def appSuffix = ""
-        if (flavor == "prod" && buildType == "release") {
-            appSuffix = ""
-        } else if (flavor == "prod") {
-            appSuffix = "-" + buildTypeCap
-        } else {
-            appSuffix = "-" + flavor + buildTypeCap
-        }
-        variant.resValue "string", "app_name", "openai_codex_practice" + appSuffix
-    }
 }
 
 flutter {
