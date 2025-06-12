@@ -34,9 +34,11 @@ android {
     productFlavors {
         dev {
             dimension "env"
+            applicationIdSuffix ".dev"
         }
         stg {
             dimension "env"
+            applicationIdSuffix ".stg"
         }
         prod {
             dimension "env"
@@ -45,6 +47,7 @@ android {
 
     buildTypes {
         debug {
+            applicationIdSuffix ".debug"
         }
         release {
             // TODO: Add your own signing config for the release build.
@@ -52,6 +55,7 @@ android {
             signingConfig = signingConfigs.debug
         }
         profile {
+            applicationIdSuffix ".profile"
         }
     }
     applicationVariants.all { variant ->
@@ -59,19 +63,14 @@ android {
         def buildType = variant.buildType.name
         def buildTypeCap = buildType.capitalize()
         def appSuffix = ""
-        def idSuffix = ""
         if (flavor == "prod" && buildType == "release") {
             appSuffix = ""
-            idSuffix = ""
         } else if (flavor == "prod") {
             appSuffix = "-" + buildTypeCap
-            idSuffix = "." + buildType
         } else {
             appSuffix = "-" + flavor + buildTypeCap
-            idSuffix = "." + flavor + "." + buildType
         }
         variant.resValue "string", "app_name", "openai_codex_practice" + appSuffix
-        variant.mergedFlavor.applicationIdSuffix = idSuffix
     }
 }
 
