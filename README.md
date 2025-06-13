@@ -6,6 +6,26 @@ this project is made with codex
 
 This project is a starting point for a Flutter application.
 
+## Module Packages
+
+Feature modules live inside the `packages/` directory as Flutter packages.
+For example the home feature is available in `packages/home` and consumed
+via a path dependency in `pubspec.yaml`.
+
+To add a new module named `foo` run:
+
+```bash
+flutter create --template=package packages/foo
+```
+
+Then reference it from the app `pubspec.yaml` using:
+
+```yaml
+dependencies:
+  foo:
+    path: packages/foo
+```
+
 A few resources to get you started if this is your first Flutter project:
 
 - [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)

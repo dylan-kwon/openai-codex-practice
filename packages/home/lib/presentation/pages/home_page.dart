@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../l10n/app_localizations.dart';
+import 'package:openai_codex_practice/l10n/app_localizations.dart';
 import '../bloc/home_bloc.dart';
 
 class HomePage extends StatelessWidget {
