@@ -14,8 +14,9 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that Home tab is selected by default.
-    expect(find.text('Home'), findsNWidgets(3)); // AppBar, body, and bottom nav
+    // Verify that Home tab is selected by default. The body shows a list so
+    // there should be two "Home" widgets for AppBar and bottom navigation.
+    expect(find.text('Home'), findsNWidgets(2));
     expect(find.text('Map'), findsOneWidget);
     expect(find.text('Settings'), findsOneWidget);
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:openai_codex_practice/l10n/app_localizations.dart';
 import '../bloc/home_bloc.dart';
+import '../bloc/news_item_bloc.dart';
+import 'news_item_list_view.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -21,15 +23,22 @@ class HomePage extends StatelessWidget {
             backgroundColor: Theme.of(context).colorScheme.inversePrimary,
             title: Text(titles[state.selectedIndex]),
           ),
-          body: Center(
-            child: Text(
-              titles[state.selectedIndex],
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ),
+          body: state.selectedIndex == 0
+              ? BlocProvider(
+                  create: (_) =>
+                      NewsItemBloc()..add(const NewsItemEvent.loadRequested()),
+                  child: const NewsItemListView(),
+                )
+              : Center(
+                  child: Text(
+                    titles[state.selectedIndex],
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: state.selectedIndex,
-            onTap: (index) => context.read<HomeBloc>().add(HomeTabChanged(index)),
+            onTap: (index) =>
+                context.read<HomeBloc>().add(HomeTabChanged(index)),
             items: [
               BottomNavigationBarItem(
                 icon: const Icon(Icons.home),
